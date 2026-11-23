@@ -1,0 +1,4 @@
+ingress:
+  host: usersapp.lab.test
+db:
+  password: lab-password

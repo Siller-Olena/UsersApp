@@ -1,0 +1,43 @@
+nameOverride: ""
+fullnameOverride: ""
+
+api:
+  image:
+    repository: sillerolena/usersapp-api
+    tag: latest
+    pullPolicy: Always
+  replicas: 1
+  port: 8080
+  environment: Production
+
+web:
+  image:
+    repository: sillerolena/usersapp-web
+    tag: latest
+    pullPolicy: Always
+  replicas: 1
+  port: 80
+  apiUrl: /api
+  
+migrator:
+  image:
+    repository: sillerolena/usersapp-migrator
+    tag: latest
+    pullPolicy: Always
+  backoffLimit: 6
+
+db:
+  image: postgres:16-alpine
+  port: 5432
+  name: usersapp
+  user: postgres
+  password: change-me
+  storage:
+    size: 1Gi
+    storageClassName: usersapp-local
+    hostPath: /tmp/usersapp-pgdata
+
+ingress:
+  enabled: true
+  className: nginx
+  host: usersapp.lab.test

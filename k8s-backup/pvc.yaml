@@ -1,0 +1,12 @@
+# storageClassName не вказано: використається StorageClass кластера за замовчуванням
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-backups
+  namespace: demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

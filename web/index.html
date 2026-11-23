@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UsersApp: користувачі</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Користувачі</h1>
+
+    <form id="user-form">
+      <input type="hidden" id="user-id">
+      <label>Ім'я <input id="user-name" required maxlength="200"></label>
+      <label>Email <input id="user-email" type="email" required maxlength="200"></label>
+      <button type="submit" id="save-btn">Додати</button>
+      <button type="button" id="cancel-btn" hidden>Скасувати</button>
+    </form>
+    <p id="message" role="alert"></p>
+
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Ім'я</th><th>Email</th><th></th></tr>
+      </thead>
+      <tbody id="users-body"></tbody>
+    </table>
+  </main>
+
+  <!-- config.js задає адресу API; у Kubernetes його підміняє ConfigMap -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

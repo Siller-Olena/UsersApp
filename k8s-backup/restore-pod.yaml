@@ -1,0 +1,22 @@
+# Допоміжний Pod: PostgreSQL-клієнт + PVC з архівами в /backups
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restore-helper
+  namespace: demo
+spec:
+  restartPolicy: Never
+  containers:
+    - name: psql
+      image: postgres:16-alpine
+      command: ["sleep", "3600"]
+      envFrom:
+        - secretRef:
+            name: users-db-connection
+      volumeMounts:
+        - name: backups
+          mountPath: /backups
+  volumes:
+    - name: backups
+      persistentVolumeClaim:
+        claimName: postgres-backups

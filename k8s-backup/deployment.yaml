@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: databasebackup-controller
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: databasebackup-controller
+  template:
+    metadata:
+      labels:
+        app: databasebackup-controller
+    spec:
+      serviceAccountName: databasebackup-controller
+      containers:
+        - name: controller
+          image: sillerolena/usersapp-backup-controller:0.1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WATCH_NAMESPACE
+              value: demo
